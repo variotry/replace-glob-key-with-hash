@@ -12,7 +12,7 @@ type _TOptions = {
 
 type TOptions = SetOptional<_TOptions, 'hash_length'>;
 
-export default function getGrobFile<T>( globVal: Record<string, T>, globStr: string, options: TOptions ): T | undefined {
+export default function getGlobFile<T>( globVal: Record<string, T>, globStr: string, options: TOptions ): T | undefined {
     const defaultOptions = {
         hash_length: defaultHashLength,
     };
