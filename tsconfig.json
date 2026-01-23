@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "nodenext",
+    "target": "esnext",
+    "module": "NodeNext",
+    "declaration": false,
+    "types": ["vite/client", "node"],
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}
