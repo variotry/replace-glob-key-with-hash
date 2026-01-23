@@ -1,0 +1,1 @@
+import{shake as p}from"radash";import{sha256 as l}from"js-sha256";var c=12;function f(e,n,h){let o={hash_length:c},{key:t,enabled_hash:a,hash_length:i}={...o,...p(h)};if(a){let s=n.match(/\*\*\/\*(\..+)$/),r=l(s?t+s[1]:t).slice(0,i);return e[r]}else return e[n.replace(/\*\*\/\*/,t)]}export{f as default};

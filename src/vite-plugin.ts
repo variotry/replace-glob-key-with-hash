@@ -1,15 +1,13 @@
-import { createHash } from 'crypto';
+import { sha256 } from 'js-sha256';
 import MagicString from 'magic-string';
 import { shake } from "radash";
 import type { RenderedChunk } from 'rollup';
 
-const defaultHashLength = 12;
+const defaultHashLength : number = 12;
 
 function genHash( src: string, length: number ): string
 {
-    return createHash( 'sha256' )
-        .update( src, 'utf8' )
-        .digest( 'hex' )
+    return sha256( src )
         .slice( 0, length );
 }
 
@@ -79,8 +77,7 @@ function hashGlobKey( code: MagicString, hash_length: number )
 
         return $1 + $2 + $3.replace( /("[^:]+")/g, ( original: string, $1: string ) => {
             let fileName = $1.replace( prefix, "" )
-                .replace( /"$/, '' )
-                .replace( /\.vue$/, '' );
+                .replace( /"$/, '' );
             //console.log( 'fileName', fileName, genHash( fileName, hash_length ) );
             return `'${ genHash( fileName, hash_length ) }'`;
         } );
@@ -109,7 +106,7 @@ function includeFile( chunk: RenderedChunk, targetFiles: string[] )
     } );
 }
 
-export type TReplaceOptions = {
+type TReplaceOptions = {
     replaceFn: ( code: MagicString, hash_length: number ) => void,
     hash_length: number,
     enable_hash: boolean

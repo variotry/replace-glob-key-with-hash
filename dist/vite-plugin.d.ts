@@ -15,4 +15,4 @@ declare function replaceGlobKeyWithHash(targetFiles: string[], options?: Partial
     };
 };
 
-export { type TReplaceOptions, replaceGlobKeyWithHash as default };
+export { replaceGlobKeyWithHash as default };
