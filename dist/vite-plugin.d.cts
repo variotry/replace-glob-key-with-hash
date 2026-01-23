@@ -4,8 +4,8 @@ import { RenderedChunk } from 'rollup';
 
 type TReplaceOptions = {
     replaceFn: (code: MagicString__default, hash_length: number) => void;
+    hash: boolean;
     hash_length: number;
-    enable_hash: boolean;
 };
 declare function replaceGlobKeyWithHash(targetFiles: string[], options?: Partial<TReplaceOptions>): {
     name: string;

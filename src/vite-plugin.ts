@@ -108,18 +108,18 @@ function includeFile( chunk: RenderedChunk, targetFiles: string[] )
 
 type TReplaceOptions = {
     replaceFn: ( code: MagicString, hash_length: number ) => void,
+    hash: boolean
     hash_length: number,
-    enable_hash: boolean
 }
 
 export default function replaceGlobKeyWithHash( targetFiles: string[], options?: Partial<TReplaceOptions> )
 {
     const defaultOptions: TReplaceOptions = {
         replaceFn: hashGlobKey,
-        hash_length: defaultHashLength,
-        enable_hash: true
+        hash: true,
+        hash_length: defaultHashLength
     };
-    const { replaceFn, hash_length, enable_hash } = {
+    const { replaceFn, hash, hash_length } = {
         ...defaultOptions,
         ...shake( options )
     };
@@ -128,7 +128,7 @@ export default function replaceGlobKeyWithHash( targetFiles: string[], options?:
         name: 'vt-replace-glob-key-with-hash',
         renderChunk( code: string, chunk: RenderedChunk )
         {
-            if ( !enable_hash|| !includeFile( chunk, targetFiles ) )
+            if ( !hash|| !includeFile( chunk, targetFiles ) )
             {
                 return null;
             }
