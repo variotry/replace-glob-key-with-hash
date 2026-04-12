@@ -3,9 +3,9 @@ import MagicString from 'magic-string';
 import { shake } from "radash";
 import type { RenderedChunk } from 'rollup';
 
-const defaultHashLength : number = 12;
+export const defaultHashLength : number = 12;
 
-function genHash( src: string, length: number ): string
+export function genHash( src: string, length: number ): string
 {
     return sha256( src )
         .slice( 0, length );
@@ -18,7 +18,7 @@ function genHash( src: string, length: number ): string
  * 2エントリ以上のファイルが必要になる（運用仕様とする必要がある）
  * NG例：PrefixDir 直下に 1ファイル(+空のディレクトリ) or 1ディレクトリしかない場合は NGとなる。
  */
-function getPrefix( matches: RegExpMatchArray | null ): string
+export function getPrefix( matches: RegExpMatchArray | string[] | null ): string
 {
     if ( matches == null || matches.length == 0 )
     {
@@ -86,7 +86,7 @@ function hashGlobKey( code: MagicString, hash_length: number )
 }
 
 
-function includeFile( chunk: RenderedChunk, targetFiles: string[] )
+export function includeFile( chunk: RenderedChunk, targetFiles: string[] )
 {
     return Object.keys( chunk.modules ).some( mid => {
         for ( let i = 0; i < targetFiles.length; ++i )
@@ -106,7 +106,7 @@ function includeFile( chunk: RenderedChunk, targetFiles: string[] )
     } );
 }
 
-type TReplaceOptions = {
+export type TReplaceOptions = {
     replaceFn: ( code: MagicString, hash_length: number ) => void,
     hash: boolean
     hash_length: number,
