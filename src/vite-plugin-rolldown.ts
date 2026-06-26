@@ -9,7 +9,7 @@ function hashGlobKey( code: MagicString, hash_length: number )
     // rolldown用に用意
     // ＃__PURE__ から ＠__PURE__ になってたり、改行されているなどかなり形式が変わっている。
     // ↑（＃、＠を小文字で書くと、コメント内でもビルド結果がおかしくなるので注意）
-    code.replace( /(.+)(\/\*\s*@__PURE__\s*\*\/\s*Object\.assign\({)(.+?)(}\))/s, ( original: string, $1: string, $2: string, $3: string, $4: string ) => {
+    code.replace( /(.+)(\/\*\s*[@#]__PURE__\s*\*\/\s*Object\.assign\s*\({)(.+?)(}\))/s, ( original: string, $1: string, $2: string, $3: string, $4: string ) => {
 
         // $3 が "**.vue": () => xxxx, の複数行入ったもの
         // "**.vue"などをハッシュ化する

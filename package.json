@@ -1,7 +1,7 @@
 {
   "name": "vt-replace-glob-key-with-hash",
   "author": "vario",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "description": "Replace glob key with hash.",
   "type": "module",
